@@ -1,5 +1,7 @@
 # No-code AI lead workflow
 
+[![CI](https://github.com/derekgallardo01/nocode-ai-lead-workflow/actions/workflows/ci.yml/badge.svg)](https://github.com/derekgallardo01/nocode-ai-lead-workflow/actions/workflows/ci.yml)
+
 The pattern behind "AI automation" projects: a lead arrives (web form, email,
 CRM) → **deduped across channels** → an LLM summarizes and categorizes it →
 drafts a context-aware reply → it's written to a CRM/sheet → a follow-up is
