@@ -14,7 +14,8 @@ LEADS = os.path.join(ROOT, "data", "leads.json")
 def test_every_lead_gets_summary_and_category():
     out = tempfile.mkdtemp()
     r = run(LEADS, out)
-    assert r["leads"] == r["processed"] == 6
+    assert r["leads"] == r["raw_leads"] == 9
+    assert r["processed"] == r["deduped_leads"] == 7
     for p in r["processed_list"]:
         assert p.summary
         assert p.category in CATEGORIES
@@ -35,11 +36,12 @@ def test_results_persisted():
     assert os.path.exists(os.path.join(out, "follow_ups.json"))
 
 
-def test_follow_ups_skip_spam():
+def test_follow_ups_skip_spam_and_human_review():
     out = tempfile.mkdtemp()
     r = run(LEADS, out)
-    # 6 leads, 1 is spam → 5 follow-ups
+    # 9 raw → 7 deduped, 1 spam excluded + 1 human-review excluded = 5 follow-ups
     assert r["follow_ups"] == 5
+    assert r["human_review"] == 1
     assert all(d["body"].startswith("Hi ") for d in r["drafts"])
 
 

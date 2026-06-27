@@ -1,14 +1,20 @@
 [
   {"id": "L1", "channel": "web_form", "name": "Dana Lewis", "email": "dana@acme.co",
    "message": "Hi, we're a 20-person agency and want pricing for your platform. Can you send a quote and book a demo?"},
+  {"id": "L1b", "channel": "email", "name": "Dana Lewis", "email": "Dana@Acme.co",
+   "message": "Following up on the form I just filled out about pricing for our 20-person team - any update?"},
   {"id": "L2", "channel": "email", "name": "Marco Diaz", "email": "marco@riverside.com",
-   "message": "The export button is broken — I get an error every time I try to download the report. Need help ASAP."},
+   "message": "The export button is broken - I get an error every time I try to download the report. Need help ASAP."},
   {"id": "L3", "channel": "crm", "name": "Priya Nair", "email": "priya@bluewave.io",
-   "message": "We'd love to explore a reseller partnership — we already sell to dental clinics."},
+   "message": "We'd love to explore a reseller partnership - we already sell to dental clinics."},
   {"id": "L4", "channel": "email", "name": "Tom Becker", "email": "tom@northstar.org",
    "message": "I was charged twice on my last invoice. Can you look into a refund?"},
   {"id": "L5", "channel": "web_form", "name": "SEO Outreach", "email": "spam@cheap-seo.biz",
    "message": "We can rank your website #1 with our cheap SEO services. Reply to learn more!"},
   {"id": "L6", "channel": "email", "name": "Aisha Khan", "email": "aisha@meridian.com",
-   "message": "What does your enterprise plan cost? We'd want about 50 seats."}
+   "message": "What does your enterprise plan cost? We'd want about 50 seats."},
+  {"id": "L6b", "channel": "crm", "name": "Aisha Khan", "email": "aisha@meridian.com",
+   "message": "Sales sync - Aisha at Meridian asking about 50-seat enterprise pricing."},
+  {"id": "L7", "channel": "email", "name": "Jordan Riley", "email": "j@flowpoint.co",
+   "message": "Hi - I came across your website and wanted to reach out. Would love to chat."}
 ]

@@ -1,0 +1,70 @@
+[
+  {"id": "quote-strong",
+   "leads": [{"id": "q1", "channel": "email", "name": "A", "email": "a@x.co",
+              "message": "Send us a quote for 50 seats and book a demo please."}],
+   "expect": {"deduped": 1, "categories": {"quote_request": 1}, "follow_ups": 1, "human_review": 0}},
+
+  {"id": "billing-strong",
+   "leads": [{"id": "b1", "channel": "email", "name": "B", "email": "b@x.co",
+              "message": "I was charged twice on this invoice - need a refund."}],
+   "expect": {"deduped": 1, "categories": {"billing": 1}, "follow_ups": 1, "human_review": 0}},
+
+  {"id": "support-strong",
+   "leads": [{"id": "s1", "channel": "email", "name": "C", "email": "c@x.co",
+              "message": "The export is broken with an error - need help ASAP."}],
+   "expect": {"deduped": 1, "categories": {"support_request": 1}, "follow_ups": 1, "human_review": 0}},
+
+  {"id": "partnership-strong",
+   "leads": [{"id": "p1", "channel": "email", "name": "D", "email": "d@x.co",
+              "message": "Interested in a reseller partnership - let's collaborate."}],
+   "expect": {"deduped": 1, "categories": {"partnership": 1}, "follow_ups": 1, "human_review": 0}},
+
+  {"id": "spam-strong",
+   "leads": [{"id": "z1", "channel": "web_form", "name": "Z", "email": "z@cheap.biz",
+              "message": "We can rank your website with our cheap SEO services - reply for more!"}],
+   "expect": {"deduped": 1, "categories": {"spam_or_irrelevant": 1}, "follow_ups": 0, "human_review": 0}},
+
+  {"id": "fallback-flagged",
+   "leads": [{"id": "v1", "channel": "email", "name": "V", "email": "v@x.co",
+              "message": "Hi - I came across your site and wanted to reach out."}],
+   "expect": {"deduped": 1, "human_review": 1, "follow_ups": 0}},
+
+  {"id": "weak-not-flagged",
+   "leads": [{"id": "w1", "channel": "email", "name": "W", "email": "w@x.co",
+              "message": "I need help with something."}],
+   "expect": {"deduped": 1, "categories": {"support_request": 1}, "human_review": 0, "follow_ups": 1}},
+
+  {"id": "dedupe-two-channels",
+   "leads": [
+     {"id": "d1", "channel": "web_form", "name": "Dana", "email": "dana@x.co",
+      "message": "Quote request please for 20-person team."},
+     {"id": "d2", "channel": "email", "name": "Dana", "email": "Dana@X.co",
+      "message": "Following up on the form about pricing."}],
+   "expect": {"deduped": 1, "merged_pairs": 1, "follow_ups": 1}},
+
+  {"id": "dedupe-no-match",
+   "leads": [
+     {"id": "n1", "channel": "email", "name": "X", "email": "x@a.co",
+      "message": "send a quote please"},
+     {"id": "n2", "channel": "email", "name": "Y", "email": "y@a.co",
+      "message": "need a refund please"}],
+   "expect": {"deduped": 2, "merged_pairs": 0, "follow_ups": 2}},
+
+  {"id": "mixed-channels-all-categories",
+   "leads": [
+     {"id": "m1", "channel": "web_form", "name": "A", "email": "a@x.co",
+      "message": "send a quote please for our team"},
+     {"id": "m2", "channel": "email", "name": "B", "email": "b@x.co",
+      "message": "the export is broken with an error"},
+     {"id": "m3", "channel": "crm", "name": "C", "email": "c@x.co",
+      "message": "reseller partnership - let's collaborate"},
+     {"id": "m4", "channel": "email", "name": "D", "email": "d@x.co",
+      "message": "charged twice on invoice - refund please"}],
+   "expect": {"deduped": 4, "categories": {
+     "quote_request": 1, "support_request": 1, "partnership": 1, "billing": 1},
+     "follow_ups": 4, "human_review": 0}},
+
+  {"id": "sample-end-to-end",
+   "leads_path": "data/leads.json",
+   "expect": {"raw_leads": 9, "deduped": 7, "merged_pairs": 2, "follow_ups": 5, "human_review": 1}}
+]

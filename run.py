@@ -15,16 +15,33 @@ def main() -> int:
     out = os.path.join(here, "out")
     result = run(os.path.join(here, "data", "leads.json"), out)
 
-    print(f"Processed {result['processed']} leads; "
-          f"drafted {result['follow_ups']} follow-ups.\n")
+    print(f"Raw leads: {result['raw_leads']}  |  After dedupe: {result['deduped_leads']}  "
+          f"({len(result['merged_pairs'])} merged pair(s))")
+    for pair in result["merged_pairs"]:
+        print(f"  merged {pair['merged_id']} into {pair['primary_id']} "
+              f"({pair['email']}; {' + '.join(pair['channels'])})")
+
+    print(f"\nFollow-ups drafted: {result['follow_ups']}  |  "
+          f"Human-review queue: {result['human_review']}\n")
+
     for p in result["processed_list"]:
-        print(f"[{p.id}] {p.channel:9} {p.category:18} {p.name}")
+        flag = "  [HUMAN-REVIEW]" if p.needs_human_review else ""
+        merged = f"  (merged: {', '.join(p.merged_from)})" if p.merged_from else ""
+        print(f"[{p.id}] {p.channel:9} {p.category:18} {p.name}{flag}{merged}")
         print(f"     summary: {p.summary}")
-        if p.draft_reply:
-            print(f"     reply  : {p.draft_reply[:80]}…")
+        if p.draft_reply and not p.needs_human_review:
+            print(f"     reply  : {p.draft_reply[:80]}...")
+        elif p.needs_human_review:
+            print(f"     reply  : (none - flagged for human review, confidence={p.confidence})")
         else:
-            print("     reply  : (none — filtered as spam)")
-    print(f"\nWrote CRM + follow-ups to: {out}/")
+            print("     reply  : (none - filtered as spam)")
+
+    if result["human_review_list"]:
+        print(f"\nHuman-review queue ({result['human_review']}):")
+        for q in result["human_review_list"]:
+            print(f"  [{q['id']}] {q['name']} ({q['channel']}) - {q['reason']}")
+
+    print(f"\nWrote CRM + follow-ups + human-review queue to: {out}/")
     return 0
 
 

@@ -1,0 +1,50 @@
+
+=== 1. Default run (dedupe + human-review enabled) ===
+Raw leads: 9 | Deduped: 7 | Merged pairs: 2
+  merged L1b into L1 (dana@acme.co; web_form + email)
+  merged L6b into L6 (aisha@meridian.com; email + crm)
+Follow-ups: 5 | Human review: 1
+
+  [L1] web_form  quote_request      conf=strong   Dana Lewis
+  [L2] email     support_request    conf=strong   Marco Diaz
+  [L3] crm       partnership        conf=strong   Priya Nair
+  [L4] email     billing            conf=strong   Tom Becker
+  [L5] web_form  spam_or_irrelevant conf=strong   SEO Outreach
+  [L6] email     quote_request      conf=strong   Aisha Khan
+  [L7] email     support_request    conf=fallback Jordan Riley  [HUMAN-REVIEW]
+
+=== 2. crm.csv (head) ===
+id,channel,name,email,category,summary,draft_reply,confidence,needs_human_review,matched_keywords,merged_from
+L1,web_form,Dana Lewis,dana@acme.co,quote_request,"Hi, we're a 20-person agency and want pricing for your platform. Can you send a quote and book a demo?",Thanks for your interest! I'd love to put together a quote - could you share your team size and timeline?,strong,False,"['quote', 'pricing', 'demo']",['L1b']
+L2,email,Marco Diaz,marco@riverside.com,support_request,The export button is broken - I get an error every time I try to download the report. Need help ASAP.,Sorry you're hit a snag. I've logged this and our team will follow up shortly - can you confirm what you were trying to do?,strong,False,"['help', 'broken', 'error', 'asap']",[]
+L3,crm,Priya Nair,priya@bluewave.io,partnership,We'd love to explore a reseller partnership - we already sell to dental clinics.,Thanks for reaching out about partnering. I'll route this to our partnerships team and follow up to set a call.,strong,False,"['partner', 'reseller']",[]
+L4,email,Tom Becker,tom@northstar.org,billing,I was charged twice on my last invoice. Can you look into a refund?,Thanks - I've flagged this to billing. We'll review your account and get back to you within one business day.,strong,False,"['invoice', 'refund', 'charge', 'charged']",[]
+
+=== 3. for_human_review.json (full) ===
+[
+  {
+    "id": "L7",
+    "name": "Jordan Riley",
+    "email": "j@flowpoint.co",
+    "channel": "email",
+    "summary": "Hi - I came across your website and wanted to reach out. Would love to chat.",
+    "category": "support_request",
+    "confidence": "fallback",
+    "matched_keywords": [],
+    "reason": "no rule matched; routed to default"
+  }
+]
+
+=== 4. follow_ups.json (head: first 2 entries) ===
+[
+  {
+    "to": "dana@acme.co",
+    "subject": "Re: your message (quote request)",
+    "body": "Hi Dana,\n\nThanks for your interest! I'd love to put together a quote - could you share your team size and timeline?\n\nBest,\nThe Team"
+  },
+  {
+    "to": "marco@riverside.com",
+    "subject": "Re: your message (support request)",
+    "body": "Hi Marco,\n\nSorry you're hit a snag. I've logged this and our team will follow up shortly - can you confirm what you were trying to do?\n\nBest,\nThe Team"
+  }
+]
