@@ -1,0 +1,129 @@
+name: Deploy live demo to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Generate the static demo report
+        run: |
+          mkdir -p site
+          python - <<'PY'
+          import html
+          import os
+          import sys
+          from collections import Counter
+          sys.path.insert(0, ".")
+          from pipeline import run
+
+          def block(label, leads_path):
+              tmp_out = f"_out_{os.path.basename(leads_path).replace('.json','')}"
+              os.makedirs(tmp_out, exist_ok=True)
+              r = run(leads_path, tmp_out)
+              by_channel = Counter(p.channel for p in r["processed_list"])
+              by_category = Counter(p.category for p in r["processed_list"])
+              parts = [f'<h2>{html.escape(label)}</h2>']
+              parts.append('<div class="cards">'
+                  f'<div class="card"><div class="k">Raw leads</div><div class="v">{r["raw_leads"]}</div></div>'
+                  f'<div class="card"><div class="k">After dedupe</div><div class="v">{r["deduped_leads"]}</div></div>'
+                  f'<div class="card"><div class="k">Follow-ups</div><div class="v">{r["follow_ups"]}</div></div>'
+                  f'<div class="card"><div class="k">Human review</div><div class="v">{r["human_review"]}</div></div>'
+                  '</div>')
+              if r["merged_pairs"]:
+                  parts.append('<h3>Dedupe pairs merged</h3><ul class="plain">')
+                  for pair in r["merged_pairs"]:
+                      parts.append(f'<li><code>{html.escape(pair["merged_id"])}</code> '
+                                   f'into <code>{html.escape(pair["primary_id"])}</code> '
+                                   f'(<code>{html.escape(pair["email"])}</code>; '
+                                   f'{html.escape(" + ".join(pair["channels"]))})</li>')
+                  parts.append('</ul>')
+              parts.append('<h3>By channel</h3><p class="dim">' +
+                           ", ".join(f'<code>{html.escape(c)}={n}</code>' for c, n in sorted(by_channel.items())) + '</p>')
+              parts.append('<h3>By category</h3><p class="dim">' +
+                           ", ".join(f'<code>{html.escape(c)}={n}</code>' for c, n in sorted(by_category.items())) + '</p>')
+              parts.append('<h3>Processed leads</h3><table><thead>'
+                           '<tr><th>ID</th><th>Channel</th><th>Category</th><th>Confidence</th><th>Flag</th><th>Name</th></tr></thead><tbody>')
+              for p in r["processed_list"]:
+                  flag = '<span class="esc">human-review</span>' if p.needs_human_review else ''
+                  parts.append(f'<tr><td><code>{html.escape(p.id)}</code></td>'
+                               f'<td>{html.escape(p.channel)}</td>'
+                               f'<td>{html.escape(p.category)}</td>'
+                               f'<td>{html.escape(p.confidence)}</td>'
+                               f'<td>{flag}</td>'
+                               f'<td>{html.escape(p.name)}</td></tr>')
+              parts.append('</tbody></table>')
+              if r["human_review_list"]:
+                  parts.append('<h3>Human-review queue</h3><ul>')
+                  for q in r["human_review_list"]:
+                      parts.append(f'<li><code>{html.escape(q["id"])}</code> '
+                                   f'{html.escape(q["name"])} ({html.escape(q["channel"])}) '
+                                   f'- {html.escape(q["reason"])}</li>')
+                  parts.append('</ul>')
+              return ''.join(parts)
+
+          page = f"""<!DOCTYPE html>
+          <html lang="en"><head><meta charset="utf-8">
+          <title>No-code AI lead workflow - live demo</title>
+          <style>
+            body{{font-family:Segoe UI,Arial,sans-serif;max-width:880px;margin:2.5rem auto;padding:0 1.5rem;color:#222;background:#f3f4f6}}
+            h1{{font-size:1.5rem;margin-bottom:.25rem}}
+            h2{{font-size:1.2rem;border-left:4px solid #2b6cb0;padding-left:10px;margin-top:2.25rem}}
+            h3{{font-size:1rem;margin-top:1.25rem;margin-bottom:.4rem}}
+            .lead{{color:#555;font-size:.95rem;margin-top:.25rem}}
+            .meta,.dim{{color:#666;font-size:.9rem}}
+            a{{color:#2b6cb0}}
+            code{{background:#eef0f3;padding:1px 6px;border-radius:4px;font-size:.9em}}
+            .cards{{display:flex;gap:1rem;flex-wrap:wrap;margin:1rem 0}}
+            .card{{background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:.8rem 1rem;min-width:120px;flex:1}}
+            .card .k{{color:#666;font-size:.85rem}}
+            .card .v{{font-size:1.5rem;font-weight:600;margin-top:.2rem}}
+            table{{width:100%;border-collapse:collapse;background:#fff;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden}}
+            th,td{{text-align:left;padding:.5rem .75rem;border-bottom:1px solid #eef0f3;font-size:.9rem}}
+            th{{background:#fafbfc;color:#374151;font-weight:600}}
+            tr:last-child td{{border-bottom:none}}
+            .esc{{display:inline-block;background:#fff7e6;color:#a06000;padding:1px 8px;border-radius:10px;font-size:.75rem}}
+            ul.plain{{padding-left:1.2rem}}ul.plain li{{margin:.2rem 0}}
+          </style>
+          </head><body>
+          <h1>No-code AI lead workflow - live demo</h1>
+          <p class="lead">The pipeline run end-to-end against two sample leads datasets, regenerated on every push.</p>
+
+          {block("Default leads (B2B SaaS inbound)", "data/leads.json")}
+          {block("Real-estate brokerage inbound", "data/leads-real-estate.json")}
+
+          <p class="meta" style="margin-top:2.5rem">Generated on every push by the pipeline - no LLM keys required (deterministic local stub).
+          Source: <a href="https://github.com/derekgallardo01/nocode-ai-lead-workflow">github.com/derekgallardo01/nocode-ai-lead-workflow</a></p>
+          </body></html>
+          """
+          with open("site/index.html", "w", encoding="utf-8") as fh:
+              fh.write(page)
+          print("wrote site/index.html")
+          PY
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deployment
+        uses: actions/deploy-pages@v4
