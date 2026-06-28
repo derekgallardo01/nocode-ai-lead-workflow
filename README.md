@@ -2,6 +2,8 @@
 
 [![CI](https://github.com/derekgallardo01/nocode-ai-lead-workflow/actions/workflows/ci.yml/badge.svg)](https://github.com/derekgallardo01/nocode-ai-lead-workflow/actions/workflows/ci.yml) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE) [![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](#)
 
+**Docs:** [Getting started](docs/getting-started.md) · [Architecture](docs/architecture.md) · [Customization](docs/customization.md) · [Evaluation](docs/evaluation.md) · [Diagrams](docs/diagrams.md) · [FAQ](docs/faq.md)
+
 **Live demo:** [derekgallardo01.github.io/nocode-ai-lead-workflow](https://derekgallardo01.github.io/nocode-ai-lead-workflow/) — both leads datasets processed end-to-end (dedupe summary, per-category breakdown, human-review queue), regenerated on every push.
 
 [![Live demo preview](docs/screenshots/02-hero.png)](https://derekgallardo01.github.io/nocode-ai-lead-workflow/)
