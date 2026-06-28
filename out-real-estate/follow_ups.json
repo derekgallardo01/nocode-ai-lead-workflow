@@ -1,0 +1,32 @@
+[
+  {
+    "to": "hannah.brooks@example.com",
+    "subject": "Re: your message (quote request)",
+    "body": "Hi Hannah,\n\nThanks for your interest! I'd love to put together a quote - could you share your team size and timeline?\n\nBest,\nThe Team"
+  },
+  {
+    "to": "danielo@example.com",
+    "subject": "Re: your message (support request)",
+    "body": "Hi Daniel,\n\nSorry you're hit a snag. I've logged this and our team will follow up shortly - can you confirm what you were trying to do?\n\nBest,\nThe Team"
+  },
+  {
+    "to": "priya.m@example.com",
+    "subject": "Re: your message (partnership)",
+    "body": "Hi Priya,\n\nThanks for reaching out about partnering. I'll route this to our partnerships team and follow up to set a call.\n\nBest,\nThe Team"
+  },
+  {
+    "to": "marcus.hill@example.com",
+    "subject": "Re: your message (billing)",
+    "body": "Hi Marcus,\n\nThanks - I've flagged this to billing. We'll review your account and get back to you within one business day.\n\nBest,\nThe Team"
+  },
+  {
+    "to": "spam@cheap-seo.biz",
+    "subject": "Re: your message (quote request)",
+    "body": "Hi SEO,\n\nThanks for your interest! I'd love to put together a quote - could you share your team size and timeline?\n\nBest,\nThe Team"
+  },
+  {
+    "to": "aisha.k@example.com",
+    "subject": "Re: your message (quote request)",
+    "body": "Hi Aisha,\n\nThanks for your interest! I'd love to put together a quote - could you share your team size and timeline?\n\nBest,\nThe Team"
+  }
+]

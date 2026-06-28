@@ -1,0 +1,13 @@
+[
+  {
+    "id": "R8",
+    "name": "Liam O'Connor",
+    "email": "liam.oc@example.com",
+    "channel": "email",
+    "summary": "Just checking in - happy to chat whenever you have a moment.",
+    "category": "support_request",
+    "confidence": "fallback",
+    "matched_keywords": [],
+    "reason": "no rule matched; routed to default"
+  }
+]

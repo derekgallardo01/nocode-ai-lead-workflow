@@ -66,5 +66,9 @@
 
   {"id": "sample-end-to-end",
    "leads_path": "data/leads.json",
-   "expect": {"raw_leads": 9, "deduped": 7, "merged_pairs": 2, "follow_ups": 5, "human_review": 1}}
+   "expect": {"raw_leads": 9, "deduped": 7, "merged_pairs": 2, "follow_ups": 5, "human_review": 1}},
+
+  {"id": "real-estate-end-to-end",
+   "leads_path": "data/leads-real-estate.json",
+   "expect": {"raw_leads": 8, "deduped": 7, "merged_pairs": 1, "follow_ups": 6, "human_review": 1}}
 ]

@@ -18,7 +18,9 @@ jobs:
         run: pip install --quiet pytest
       - name: Unit tests
         run: python -m pytest -q
-      - name: Eval harness (end-to-end scenarios)
+      - name: Eval harness (12 scenarios incl. real-estate)
         run: python evals/run.py
-      - name: Smoke-test the demo
+      - name: Smoke-test the demo (default leads)
         run: python run.py
+      - name: Smoke-test the alternate dataset (real estate)
+        run: python cli.py data/leads-real-estate.json --out /tmp/realestate-out

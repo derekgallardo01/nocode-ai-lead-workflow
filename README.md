@@ -110,6 +110,7 @@ human-review queue to Slack / Teams / a CRM task — are walked through in
 | [cli.py](cli.py) | `python cli.py <leads_path> [--out DIR] [--no-dedupe] [--no-human-review]`. |
 | [run.py](run.py) | Default demo: prints dedupe summary + per-lead status + human-review queue. |
 | [data/leads.json](data/leads.json) | 9 sample leads (5 categories, 2 dedupe pairs across channels, 1 fallback case). |
+| [data/leads-real-estate.json](data/leads-real-estate.json) | 8 real-estate-flavored sample leads (1 dedupe pair, 1 fallback case) — proves the workflow works on a different industry's inbound. |
 | [blueprint.md](blueprint.md) | Node-by-node mapping onto Make.com, Zapier, n8n, and Power Automate. |
 | [tests/](tests/) | 16 pytest tests including dedupe, fallback detection, no-dedupe and no-human-review modes. |
 | [evals/](evals/) | 11 end-to-end eval cases + CI-gating runner. |

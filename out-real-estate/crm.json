@@ -1,0 +1,114 @@
+[
+  {
+    "id": "R1",
+    "channel": "web_form",
+    "name": "Hannah Brooks",
+    "email": "hannah.brooks@example.com",
+    "category": "quote_request",
+    "summary": "I'm looking at the Maple Street listing - could you send pricing and a quote on closing costs?",
+    "draft_reply": "Thanks for your interest! I'd love to put together a quote - could you share your team size and timeline?",
+    "confidence": "strong",
+    "needs_human_review": false,
+    "matched_keywords": [
+      "quote",
+      "pricing",
+      "cost"
+    ],
+    "merged_from": []
+  },
+  {
+    "id": "R2",
+    "channel": "email",
+    "name": "Daniel Ortiz",
+    "email": "danielo@example.com",
+    "category": "support_request",
+    "summary": "Your listing photos on the 14 Birch Lane page won't load on my phone - getting an error every time. Need help to see the gallery.",
+    "draft_reply": "Sorry you're hit a snag. I've logged this and our team will follow up shortly - can you confirm what you were trying to do?",
+    "confidence": "strong",
+    "needs_human_review": false,
+    "matched_keywords": [
+      "help",
+      "error"
+    ],
+    "merged_from": []
+  },
+  {
+    "id": "R3",
+    "channel": "crm",
+    "name": "Priya Mehta",
+    "email": "priya.m@example.com",
+    "category": "partnership",
+    "summary": "We're a brokerage in the Pacific Northwest and would love to discuss a referral partnership for clients outside our service area.",
+    "draft_reply": "Thanks for reaching out about partnering. I'll route this to our partnerships team and follow up to set a call.",
+    "confidence": "weak",
+    "needs_human_review": false,
+    "matched_keywords": [
+      "partner"
+    ],
+    "merged_from": []
+  },
+  {
+    "id": "R4",
+    "channel": "email",
+    "name": "Marcus Hill",
+    "email": "marcus.hill@example.com",
+    "category": "billing",
+    "summary": "Hi - I'm seeing two invoices for the same agent commission. Could you look into a refund for the duplicate charge?",
+    "draft_reply": "Thanks - I've flagged this to billing. We'll review your account and get back to you within one business day.",
+    "confidence": "strong",
+    "needs_human_review": false,
+    "matched_keywords": [
+      "invoice",
+      "refund",
+      "charge"
+    ],
+    "merged_from": []
+  },
+  {
+    "id": "R5",
+    "channel": "web_form",
+    "name": "SEO Outreach",
+    "email": "spam@cheap-seo.biz",
+    "category": "quote_request",
+    "summary": "We can rank your website with our cheap SEO services. Reply for our pricing!",
+    "draft_reply": "Thanks for your interest! I'd love to put together a quote - could you share your team size and timeline?",
+    "confidence": "weak",
+    "needs_human_review": false,
+    "matched_keywords": [
+      "pricing"
+    ],
+    "merged_from": []
+  },
+  {
+    "id": "R6",
+    "channel": "email",
+    "name": "Aisha Khan",
+    "email": "aisha.k@example.com",
+    "category": "quote_request",
+    "summary": "What does your premium buyer package cost? We'd want at least 3 viewings included with priority demo bookings.",
+    "draft_reply": "Thanks for your interest! I'd love to put together a quote - could you share your team size and timeline?",
+    "confidence": "strong",
+    "needs_human_review": false,
+    "matched_keywords": [
+      "cost",
+      "buy",
+      "demo"
+    ],
+    "merged_from": [
+      "R7"
+    ]
+  },
+  {
+    "id": "R8",
+    "channel": "email",
+    "name": "Liam O'Connor",
+    "email": "liam.oc@example.com",
+    "category": "support_request",
+    "summary": "Just checking in - happy to chat whenever you have a moment.",
+    "draft_reply": "Sorry you're hit a snag. I've logged this and our team will follow up shortly - can you confirm what you were trying to do?",
+    "confidence": "fallback",
+    "needs_human_review": true,
+    "matched_keywords": [],
+    "merged_from": []
+  }
+]

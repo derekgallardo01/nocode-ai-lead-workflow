@@ -1,0 +1,18 @@
+[
+  {"id": "R1", "channel": "web_form", "name": "Hannah Brooks", "email": "hannah.brooks@example.com",
+   "message": "I'm looking at the Maple Street listing - could you send pricing and a quote on closing costs?"},
+  {"id": "R2", "channel": "email", "name": "Daniel Ortiz", "email": "danielo@example.com",
+   "message": "Your listing photos on the 14 Birch Lane page won't load on my phone - getting an error every time. Need help to see the gallery."},
+  {"id": "R3", "channel": "crm", "name": "Priya Mehta", "email": "priya.m@example.com",
+   "message": "We're a brokerage in the Pacific Northwest and would love to discuss a referral partnership for clients outside our service area."},
+  {"id": "R4", "channel": "email", "name": "Marcus Hill", "email": "marcus.hill@example.com",
+   "message": "Hi - I'm seeing two invoices for the same agent commission. Could you look into a refund for the duplicate charge?"},
+  {"id": "R5", "channel": "web_form", "name": "SEO Outreach", "email": "spam@cheap-seo.biz",
+   "message": "We can rank your website with our cheap SEO services. Reply for our pricing!"},
+  {"id": "R6", "channel": "email", "name": "Aisha Khan", "email": "aisha.k@example.com",
+   "message": "What does your premium buyer package cost? We'd want at least 3 viewings included with priority demo bookings."},
+  {"id": "R7", "channel": "crm", "name": "Aisha Khan", "email": "aisha.k@example.com",
+   "message": "Sales sync - Aisha is asking about your premium buyer package and pricing for multiple viewings."},
+  {"id": "R8", "channel": "email", "name": "Liam O'Connor", "email": "liam.oc@example.com",
+   "message": "Just checking in - happy to chat whenever you have a moment."}
+]
