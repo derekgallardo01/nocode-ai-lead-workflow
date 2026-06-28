@@ -22,6 +22,16 @@ python -m pytest -q                        # 16 unit tests
 
 Stdlib-only Python, no keys, no tenant required to run any of this.
 
+## Run in Docker
+
+```bash
+docker build -t nocode-lead-workflow .
+docker run --rm nocode-lead-workflow                                                  # scripted demo (default leads)
+docker run --rm nocode-lead-workflow python cli.py data/leads-real-estate.json        # real-estate leads
+docker run --rm nocode-lead-workflow python evals/run.py                              # 12 eval cases
+docker run --rm nocode-lead-workflow python -m pytest -q                              # 16 unit tests
+```
+
 ## The problem it solves
 
 Inbound arrives from a form, a shared inbox, and a CRM, and someone reads
