@@ -1,0 +1,24 @@
+{
+  "repo": "nocode-ai-lead-workflow",
+  "title": "No-Code AI Lead Workflow",
+  "tagline": "Lead triage with cross-channel dedupe and a human-review queue for low-confidence classifications.",
+  "kicker": "AI \u00b7 No-Code Automation \u00b7 Capability Demo",
+  "features": [
+    {
+      "label": "Logic",
+      "value": "Dedupe + classify + queue"
+    },
+    {
+      "label": "Eval cases",
+      "value": "12 end-to-end"
+    },
+    {
+      "label": "Blueprint",
+      "value": "Make / Zapier / n8n"
+    }
+  ],
+  "theme": {
+    "primary": "#6b46c1",
+    "accent": "#8b5cf6"
+  }
+}
