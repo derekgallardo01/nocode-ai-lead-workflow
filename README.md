@@ -41,6 +41,14 @@ docker run --rm nocode-lead-workflow python evals/run.py                        
 docker run --rm nocode-lead-workflow python -m pytest -q                              # 16 unit tests
 ```
 
+## Example: production scenario
+
+**[examples/batch_lead_intake.py](examples/batch_lead_intake.py)** — End-to-end lead intake: load raw leads -> cross-channel dedupe -> classify -> route to CRM or human-review queue -> draft follow-up tasks
+
+```bash
+python examples/batch_lead_intake.py
+```
+
 ## The problem it solves
 
 Inbound arrives from a form, a shared inbox, and a CRM, and someone reads
