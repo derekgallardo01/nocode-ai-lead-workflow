@@ -4,6 +4,11 @@
 
 **Live demo:** [derekgallardo01.github.io/nocode-ai-lead-workflow](https://derekgallardo01.github.io/nocode-ai-lead-workflow/) — both leads datasets processed end-to-end (dedupe summary, per-category breakdown, human-review queue), regenerated on every push.
 
+[![Live demo preview](docs/screenshots/02-hero.png)](https://derekgallardo01.github.io/nocode-ai-lead-workflow/)
+
+[Full-page capture (both datasets) →](docs/screenshots/01-overview-fullpage.png)
+
+
 The pattern behind "AI automation" projects: a lead arrives (web form, email,
 CRM) → **deduped across channels** → an LLM summarizes and categorizes it →
 drafts a context-aware reply → it's written to a CRM/sheet → a follow-up is
